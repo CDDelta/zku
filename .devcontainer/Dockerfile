@@ -14,3 +14,19 @@ FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-${VARIANT}
 
 # [Optional] Uncomment if you want to install more global node packages
 # RUN su node -c "npm install -g <your-package-list -here>"
+
+# Install Rust
+ENV CARGO_HOME=/usr/local/cargo \
+    RUSTUP_HOME=/usr/local/rustup
+ENV PATH=${CARGO_HOME}/bin:${PATH}
+COPY library-scripts/rust-debian.sh /tmp/library-scripts/
+RUN apt-get update && bash /tmp/library-scripts/rust-debian.sh "${CARGO_HOME}" "${RUSTUP_HOME}"
+
+# Install circom
+RUN git clone https://github.com/iden3/circom.git
+WORKDIR ./circom
+RUN cargo build --release
+RUN cargo install --path circom
+
+# Install snarkjs
+RUN npm install -g snarkjs
