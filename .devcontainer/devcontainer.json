@@ -19,7 +19,8 @@
   "extensions": [
     "dbaeumer.vscode-eslint",
     "JuanBlanco.solidity",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "iden3.circom"
   ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
