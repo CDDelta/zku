@@ -10,12 +10,14 @@ template MerkleRoot(N) {
 
     component hashers[N - 1];
 
+    // Hash the leaves of the Merkle tree first...
     for (var i = 0; i < N / 2; i++) {
         hashers[i + N / 2 - 1] = MerkleHasher();
         hashers[i + N / 2 - 1].ins[0] <== leaves[2 * i];
         hashers[i + N / 2 - 1].ins[1] <== leaves[2 * i + 1];
     }
 
+    // Then, hash up the tree till the root.
     for (var i = N / 2 - 2; i >= 0; i--) {
         hashers[i] = MerkleHasher();
         hashers[i].ins[0] <== hashers[2 * i + 1].out;
@@ -37,4 +39,4 @@ template MerkleHasher() {
     out <== hasher.outs[0];
 }
 
-component main {public [leaves]} = MerkleRoot(4);
+component main {public [leaves]} = MerkleRoot(8);
