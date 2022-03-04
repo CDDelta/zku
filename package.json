@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "snark:mock-ptau": "sh ./scripts/mock-ptau.sh"
+  },
+  "workspaces": [
+    "assignment01/question01",
+    "assignment01/question02/contracts",
+    "assignment01/question02/frontend"
+  ]
+}
