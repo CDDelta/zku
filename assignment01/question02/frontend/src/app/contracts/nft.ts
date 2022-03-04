@@ -4,7 +4,7 @@ export function createNFTContractInstance(provider: ethers.providers.Provider) {
   return new ethers.Contract(nftAddress, nftAbi, provider);
 }
 
-const nftAddress = '0x3a1f69abacc5cfe2180b28efffd67ca875e6c316';
+const nftAddress = '0x3db8ef201d86d686fae12174b26a84b22352d9f3';
 
 const nftAbi = `[
 	{
@@ -169,19 +169,6 @@ const nftAbi = `[
 	},
 	{
 		"inputs": [],
-		"name": "merkleRoot",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "name",
 		"outputs": [
 			{
@@ -207,6 +194,25 @@ const nftAbi = `[
 				"internalType": "address",
 				"name": "",
 				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "nodeIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "retrieveMerkleTreeNode",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
 			}
 		],
 		"stateMutability": "view",

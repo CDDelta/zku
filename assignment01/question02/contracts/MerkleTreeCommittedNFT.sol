@@ -39,9 +39,10 @@ contract MerkleTreeCommittedNFT is ERC721 {
         );
     }
 
-    /// @dev Returns the root of the Merkle tree committing to the NFTs minted by this contract.
-    function merkleRoot() public view returns (bytes32) {
-        return _merkleTree[0];
+    /// @dev Returns the node at an index of the Merkle tree committing to the NFTs minted by this contract.
+    /// @param nodeIndex the node of the Merkle tree to retrieve.
+    function retrieveMerkleTreeNode(uint256 nodeIndex) public view returns (bytes32) {
+        return _merkleTree[nodeIndex];
     }
 
     /// @dev Mints an NFT to the specified address and commits it to the Merkle tree on this contract.

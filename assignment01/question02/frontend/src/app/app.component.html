@@ -11,4 +11,22 @@
       ></textarea>
     </div>
   </div>
+
+  <div class="row justify-content-center my-3">
+    <div class="card">
+      <button
+        class="btn btn-secondary my-3"
+        (click)="generateAndVerifyMiMCMerkleTreeSNARKProof()"
+      >
+        Generate and Verify MiMC Merkle Tree SNARK Proof
+      </button>
+
+      <textarea
+        class="form-control mb-3"
+        [value]="proofLog"
+        rows="8"
+        disabled
+      ></textarea>
+    </div>
+  </div>
 </div>
