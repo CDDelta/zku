@@ -99,15 +99,23 @@ export class AppComponent {
       this.provider
     ).connect(signer);
 
-    this.proofLog += 'Initiating proof verification transaction...\n';
+    this.proofLog += 'Verifying proof on-chain...\n';
+
+    const stringToBigInt = (v: string) => BigInt(v);
+
+    proof.pi_a = proof.pi_a.map(stringToBigInt);
+    proof.pi_b = [
+      proof.pi_b[0].map(stringToBigInt),
+      proof.pi_b[1].map(stringToBigInt),
+    ];
+    proof.pi_c = proof.pi_c.map(stringToBigInt);
+
+    const calldata = await snarkjs.groth16
+      .exportSolidityCallData(proof, publicSignals.map(stringToBigInt))
+      .then((calldataJson: string) => JSON.parse(`[${calldataJson}]`));
 
     // @ts-ignore
-    const valid = await verifierContract.verifyProof(
-      [proof.pi_a[0], proof.pi_a[1]],
-      [proof.pi_b[0], proof.pi_b[1]],
-      [proof.pi_c[0], proof.pi_c[1]],
-      publicSignals
-    );
+    const valid = await verifierContract.verifyProof(...calldata);
 
     this.proofLog += `Proof verification resolved to: ${valid}\n`;
   }
