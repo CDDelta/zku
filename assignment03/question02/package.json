@@ -1,0 +1,15 @@
+{
+  "name": "ass03-q02",
+  "scripts": {
+    "circom:compile": "cd circuits && circom cardcommit.circom --r1cs --wasm --sym --c -o dist",
+    "circom:witness": "cd circuits/dist/cardcommit_js && node generate_witness.js cardcommit.wasm ../../input.json ../../witness.wtns",
+    "snark:mock-phase2": "sh ./scripts/mock-phase2.sh",
+    "snark:prove": "cd circuits && snarkjs groth16 prove cardcommit_0001.zkey witness.wtns proof.json public.json",
+    "snark:full-prove": "npm run circom:witness && npm run snark:prove",
+    "snark:verify": "cd circuits && snarkjs groth16 verify verification_key.json public.json proof.json",
+    "snark:contract": "cd circuits && snarkjs zkey export solidityverifier cardcommit_0001.zkey ./dist/Verifier.sol"
+  },
+  "dependencies": {
+    "circomlib": "^2.0.3"
+  }
+}
