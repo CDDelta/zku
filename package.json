@@ -5,6 +5,7 @@
   "workspaces": [
     "assignment01/question01",
     "assignment01/question02/contracts",
-    "assignment01/question02/frontend"
+    "assignment01/question02/frontend",
+    "assignment03/question01"
   ]
 }

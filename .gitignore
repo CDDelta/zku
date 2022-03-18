@@ -1,1 +1,7 @@
+dist
 node_modules
+
+proof.json
+public.json
+witness.json
+witness.wtns
