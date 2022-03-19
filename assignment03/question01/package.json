@@ -9,7 +9,7 @@
     "snark:prove": "snarkjs groth16 prove trianglejump_0001.zkey witness.wtns proof.json public.json",
     "snark:full-prove": "npm run circom:witness && npm run snark:prove",
     "snark:verify": "snarkjs groth16 verify verification_key.json public.json proof.json",
-    "snark:contract": "snarkjs zkey export solidityverifier trianglejump_0001.zkey ./dist/Verifier.sol"
+    "snark:contract": "snarkjs zkey export solidityverifier trianglejump_0001.zkey ./contracts/Verifier.sol"
   },
   "dependencies": {
     "circomlib": "^2.0.3"
