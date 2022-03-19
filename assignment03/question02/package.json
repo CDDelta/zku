@@ -7,7 +7,8 @@
     "snark:prove": "cd circuits && snarkjs groth16 prove cardcommit_0001.zkey witness.wtns proof.json public.json",
     "snark:full-prove": "npm run circom:witness && npm run snark:prove",
     "snark:verify": "cd circuits && snarkjs groth16 verify verification_key.json public.json proof.json",
-    "snark:contract": "cd circuits && snarkjs zkey export solidityverifier cardcommit_0001.zkey ./dist/Verifier.sol"
+    "snark:contract": "cd circuits && snarkjs zkey export solidityverifier cardcommit_0001.zkey ../contracts/Verifier.sol",
+    "snark:export-calldata": "cd circuits && snarkjs zkesc public.json proof.json"
   },
   "dependencies": {
     "circomlib": "^2.0.3"
